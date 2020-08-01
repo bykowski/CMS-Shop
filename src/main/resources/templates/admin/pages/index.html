@@ -8,13 +8,64 @@
  <nav th:replace="/fragments/nav :: nav-admin"></nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Admin Pages</h1>
-            </div>
+
+       <h1 class="display-2">Pages</h1>
+        <a href="/admin/pages/add" class="btn btn-primary mb-5">Add new</a>
+
+        <div th:if="${!pages.empty}">
+            <p>There are pages</p>
+
+            <table class="table">
+                <tr>
+                    <th>Title</th>
+                    <th>Slug</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr th:each="page: ${pages}">
+                    <td th:text="${page.title}"></td>
+                    <td th:text="${page.slug}"></td>
+
+                    <td><a th:href="@{'/admin/pages/edit/' + ${page.id} }">Edit</a></td>
+                    <td><a th:href="@{'/admin/pages/delete/' + ${page.id} }">Delete</a></td>
+
+                </tr>
+            </table>
         </div>
+
+        <div th:unless="${!pages.empty}">
+            <p>There are no pages</p>
+            <h4 class="display-4">There are no pages at the moment</h4>
+        </div>
+
     </div> <!-- /container -->
 
+ <!--<div th:if="${!products.empty}">-->
+     <!--<table class="table">-->
+         <!--<tr>-->
+             <!--<th>Name</th>-->
+             <!--<th>Image</th>-->
+             <!--<th>Category</th>-->
+             <!--<th>Price</th>-->
+             <!--<th>Edit</th>-->
+             <!--<th>Delete</th>-->
+         <!--</tr>-->
+         <!--<tr th:each="product: ${products}">-->
+             <!--<td th:text="${product.name}"></td>-->
+             <!--<td>-->
+                 <!--<img style="width: 100px;" th:src="@{'/media/' + ${product.image}}">-->
+             <!--</td>-->
+             <!--<td th:text="${cats[__${product.categoryId}__]}"></td>-->
+             <!--<td th:text="'$ ' + ${product.price}"></td>-->
+             <!--<td><a th:href="@{'/admin/products/edit/' + ${product.id}}">Edit</a></td>-->
+             <!--<td><a th:href="@{'/admin/products/delete/' + ${product.id}}" class="confirmDeletion">Delete</a></td>-->
+         <!--</tr>-->
+     <!--</table>-->
+ <!--</div>-->
+
+     <!--<div th:unless="${!products.empty}">-->
+         <!--<h4 class="display-4">There are no products at the moment</h4>-->
+     <!--</div>-->
 
  <footer th:replace="/fragments/footer"></footer>
 

@@ -1,76 +1,108 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head th:replace="/fragments/head"></head>
 
 <body>
 
- <nav th:replace="/fragments/nav :: nav-admin"></nav>
+<nav th:replace="/fragments/nav :: nav-admin"></nav>
 
-    <div class="container">
+<div class="container">
 
-       <h1 class="display-2">Pages</h1>
-        <a href="/admin/pages/add" class="btn btn-primary mb-5">Add new</a>
+    <h1 class="display-2">Add a page</h1>
+    <a href="/admin/pages" class="btn btn-primary mb-5">Back to pages</a>
 
-        <div th:if="${!pages.empty}">
-            <p>There are pages</p>
+    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
 
-            <table class="table">
-                <tr>
-                    <th>Title</th>
-                    <th>Slug</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                <tr th:each="page: ${pages}">
-                    <td th:text="${page.title}"></td>
-                    <td th:text="${page.slug}"></td>
+    <form method="post" th:object="${page}" th:action="@{/admin/pages/add}" >
 
-                    <td><a th:href="@{'/admin/pages/edit/' + ${page.id} }">Edit</a></td>
-                    <td><a th:href="@{'/admin/pages/delete/' + ${page.id} }">Delete</a></td>
-
-                </tr>
-            </table>
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            There are errors
         </div>
 
-        <div th:unless="${!pages.empty}">
-            <p>There are no pages</p>
-            <h4 class="display-4">There are no pages at the moment</h4>
+        <div class="form-group">
+            <label for="">Title:</label>
+            <input type="text" class="form-control" th:field="*{title}" placeholder="Title">
+            <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
         </div>
 
-    </div> <!-- /container -->
+        <div class="form-group">
+            <label for="">Slug:</label>
+            <input type="text" class="form-control" th:field="*{slug}" placeholder="Slug">
+        </div>
 
- <!--<div th:if="${!products.empty}">-->
-     <!--<table class="table">-->
-         <!--<tr>-->
-             <!--<th>Name</th>-->
-             <!--<th>Image</th>-->
-             <!--<th>Category</th>-->
-             <!--<th>Price</th>-->
-             <!--<th>Edit</th>-->
-             <!--<th>Delete</th>-->
-         <!--</tr>-->
-         <!--<tr th:each="product: ${products}">-->
-             <!--<td th:text="${product.name}"></td>-->
-             <!--<td>-->
-                 <!--<img style="width: 100px;" th:src="@{'/media/' + ${product.image}}">-->
-             <!--</td>-->
-             <!--<td th:text="${cats[__${product.categoryId}__]}"></td>-->
-             <!--<td th:text="'$ ' + ${product.price}"></td>-->
-             <!--<td><a th:href="@{'/admin/products/edit/' + ${product.id}}">Edit</a></td>-->
-             <!--<td><a th:href="@{'/admin/products/delete/' + ${product.id}}" class="confirmDeletion">Delete</a></td>-->
-         <!--</tr>-->
-     <!--</table>-->
- <!--</div>-->
+        <div class="form-group">
+            <label for="">Content:</label>
+            <textarea th:field="*{content}" rows="10" class="form-control" placeholder="Content"></textarea>
+            <span class="error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+        </div>
 
-     <!--<div th:unless="${!products.empty}">-->
-         <!--<h4 class="display-4">There are no products at the moment</h4>-->
-     <!--</div>-->
+        <button class="btn btn-danger mb-5">Add</button>
 
- <footer th:replace="/fragments/footer"></footer>
+    </form>
 
+</div>
 
+<div th:replace="/fragments/footer"></div>
 
 </body>
 
 </html>
+
+
+<!--<!doctype html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+
+<!--<head th:replace="/fragments/head"></head>-->
+
+<!--<body>-->
+
+ <!--<nav th:replace="/fragments/nav :: nav-admin"></nav>-->
+
+    <!--<div class="container">-->
+
+        <!--<h1 class="display-2">Add a page</h1>-->
+        <!--<a href="/admin/pages" class="btn btn-primary mb-5">Back to pages</a>-->
+
+        <!--<form method="post" th:object="${page}" th:action="@{/admin/pages/add}">-->
+
+            <!--<div th:if="${#fields.hasErrors('*')}" th:class="alert alert-danger">-->
+                <!--There are errors-->
+            <!--</div>-->
+
+            <!--<div class="form-group" >-->
+                <!--<label for="">Title</label>-->
+                <!--<input type="text" class="form-control" th:field="*{title}" placeholder="Title">-->
+                <!--<span class="error" th:if="${#fields.hasErrors('title')}" th:errors=*{title}"></span>-->
+            <!--</div>-->
+
+
+            <!--<div class="form-group">-->
+                <!--<label for="">Slug:</label>-->
+                <!--<input type="text" class="form-control" th:field="*{slug}" placeholder="Slug">-->
+
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="">Content:</label>-->
+                <!--<textarea th:field="*{content}" rows="10" class="form-control" placeholder="Content">-->
+
+                <!--</textarea>-->
+                <!--<span class="error" th:if="${#fields.hasErrors('content')}" th:errors=*{content}"></span>-->
+
+            <!--</div>-->
+
+            <!--<button class="btn btn-danger mb-5">Add</button>-->
+
+        <!--</form>-->
+
+    <!--</div>-->
+     <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+ <!--<footer th:replace="/fragments/footer"></footer>-->
+
+
+
+<!--</body>-->
+
+<!--</html>-->

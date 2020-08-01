@@ -1,0 +1,8 @@
+
+body {
+    background-color: azure;
+}
+
+span.error {
+    color:darkred !important;
+}

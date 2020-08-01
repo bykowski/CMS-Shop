@@ -1,8 +1,13 @@
 package com.adrian.cmsshoppingcart.models.data;
 
-import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
-import javax.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name="pages")
@@ -10,10 +15,17 @@ import javax.persistence.*;
 public class Page {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+
+    @Size(min=2, message = "Title must be at least 2 characters long")
     private String title;
+
     private String slug;
-    private int sort;
+
+    @Size(min=5, message = "Content must be at least 5 characters long")
+    private String content;
+
+    private int sorting;
 
 }
