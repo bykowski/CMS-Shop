@@ -1,4 +1,4 @@
-package com.adrian.cmsshoppingcart.controllers;
+package com.vojislavk.cmsshoppingcart.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-//    @GetMapping("/")
-//    public String home() {
-//        return "home";
-//    }
-
+    @GetMapping("/someRandomPage")
+    public String home() {
+        return "home";
+    }
+    
 }
