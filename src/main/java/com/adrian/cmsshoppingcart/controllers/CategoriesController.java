@@ -1,6 +1,5 @@
 package com.vojislavk.cmsshoppingcart.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.vojislavk.cmsshoppingcart.models.CategoryRepository;
@@ -54,9 +53,9 @@ public class CategoriesController {
 
             int categoryId = category.getId();
             String categoryName = category.getName();
-            List<Product> products = productRepo.findAllByCategoryId(categoryId, pageable);
+            List<Product> products = productRepo.findAllByCategoryId(Integer.toString(categoryId), pageable);
 
-            count = productRepo.countByCategoryId(categoryId);
+            count = productRepo.countByCategoryId(Integer.toString(categoryId));
 
             model.addAttribute("products", products);
             model.addAttribute("categoryName", categoryName);
