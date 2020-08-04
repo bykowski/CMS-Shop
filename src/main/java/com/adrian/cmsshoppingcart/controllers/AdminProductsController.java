@@ -1,19 +1,9 @@
-package com.vojislavk.cmsshoppingcart.controllers;
+package com.adrian.cmsshoppingcart.controllers;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.validation.Valid;
-
-import com.vojislavk.cmsshoppingcart.models.CategoryRepository;
-import com.vojislavk.cmsshoppingcart.models.ProductRepository;
-import com.vojislavk.cmsshoppingcart.models.data.Category;
-import com.vojislavk.cmsshoppingcart.models.data.Product;
-
+import com.adrian.cmsshoppingcart.models.CategoryRepository;
+import com.adrian.cmsshoppingcart.models.ProductRepository;
+import com.adrian.cmsshoppingcart.models.data.Category;
+import com.adrian.cmsshoppingcart.models.data.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,13 +11,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/products")
@@ -79,9 +73,9 @@ public class AdminProductsController {
 
     @PostMapping("/add")
     public String add(@Valid Product product, 
-                        BindingResult bindingResult, 
-                        MultipartFile file, 
-                        RedirectAttributes redirectAttributes, 
+                        BindingResult bindingResult,
+                        MultipartFile file,
+                        RedirectAttributes redirectAttributes,
                         Model model) throws IOException {
 
         List<Category> categories = categoryRepo.findAll();
@@ -141,9 +135,9 @@ public class AdminProductsController {
 
     @PostMapping("/edit")
     public String edit(@Valid Product product, 
-                        BindingResult bindingResult, 
-                        MultipartFile file, 
-                        RedirectAttributes redirectAttributes, 
+                        BindingResult bindingResult,
+                        MultipartFile file,
+                        RedirectAttributes redirectAttributes,
                         Model model) throws IOException {
 
         Product currentProduct = productRepo.getOne(product.getId());

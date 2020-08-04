@@ -1,12 +1,9 @@
-package com.vojislavk.cmsshoppingcart.controllers;
+package com.adrian.cmsshoppingcart.controllers;
 
-import java.util.List;
-
-import com.vojislavk.cmsshoppingcart.models.CategoryRepository;
-import com.vojislavk.cmsshoppingcart.models.ProductRepository;
-import com.vojislavk.cmsshoppingcart.models.data.Category;
-import com.vojislavk.cmsshoppingcart.models.data.Product;
-
+import com.adrian.cmsshoppingcart.models.CategoryRepository;
+import com.adrian.cmsshoppingcart.models.ProductRepository;
+import com.adrian.cmsshoppingcart.models.data.Category;
+import com.adrian.cmsshoppingcart.models.data.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/category")
 public class CategoriesController {
@@ -27,7 +26,7 @@ public class CategoriesController {
 
     @Autowired
     private ProductRepository productRepo;
-    
+
     @GetMapping("/{slug}")
     public String category(@PathVariable String slug, Model model, @RequestParam(value="page", required = false) Integer p) {
 

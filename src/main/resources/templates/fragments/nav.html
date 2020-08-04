@@ -11,13 +11,30 @@
                 <a class="nav-link" th:href="@{'/' + ${page.slug}}" th:text="${page.title}"></a>
             </li>
         </ul>
+
+        <ul class="float-right navbar-nav" th:if="${principal == null}">
+            <li class="nav-item active">
+                <a th:href="@{/register}" class="nav-link">Register</a>
+            </li>
+            <li class="nav-item active">
+                <a th:href="@{/login}" class="nav-link">Login</a>
+            </li>
+        </ul>
+
+         <!--logout method isn't defined by me, it's existing in Spring-->
+        <form th:if="${principal != null}" method="post" th:action="@{/logout}">
+            <span class="text-white" th:text="${'Hi, ' + principal + '  '}"></span>
+            <span th:text="'   '"> </span>
+            <button class="btn btn-secondary">Logout</button>
+        </form>
+
     </div>
 </nav>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="nav-admin">
     <a class="navbar-brand" href="/" target="_blank">Home Page</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -32,6 +49,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/admin/products">Products</a>
             </li>
+
         </ul>
+
+        <form class="float-right" th:if="${principal != null}" method="post" th:action="@{/logout}">
+            <span class="text-white" th:text="${'Hi, ' + principal}"></span>
+            <button class="btn btn-secondary">Logout</button>
+        </form>
     </div>
 </nav>

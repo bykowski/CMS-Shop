@@ -1,19 +1,13 @@
-package com.vojislavk.cmsshoppingcart.models.data;
+package com.adrian.cmsshoppingcart.models.data;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.Data;
+import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 @Entity
 @Table(name = "admin")
@@ -23,7 +17,7 @@ public class Admin implements UserDetails {
     private static final long serialVersionUID = 2l;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     private String username;

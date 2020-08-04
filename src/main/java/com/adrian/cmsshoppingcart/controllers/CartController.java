@@ -1,14 +1,8 @@
-package com.vojislavk.cmsshoppingcart.controllers;
+package com.adrian.cmsshoppingcart.controllers;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import com.vojislavk.cmsshoppingcart.models.Cart;
-import com.vojislavk.cmsshoppingcart.models.ProductRepository;
-import com.vojislavk.cmsshoppingcart.models.data.Product;
-
+import com.adrian.cmsshoppingcart.models.Cart;
+import com.adrian.cmsshoppingcart.models.ProductRepository;
+import com.adrian.cmsshoppingcart.models.data.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/cart")
@@ -27,7 +25,7 @@ public class CartController {
 
     @GetMapping("/add/{id}")
     public String add(@PathVariable int id, HttpSession session, Model model,
-            @RequestParam(value = "cartPage", required = false) String cartPage) {
+                      @RequestParam(value = "cartPage", required = false) String cartPage) {
 
         Product product = productRepo.getOne(id);
 

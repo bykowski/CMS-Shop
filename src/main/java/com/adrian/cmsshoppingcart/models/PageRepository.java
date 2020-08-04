@@ -1,10 +1,9 @@
-package com.vojislavk.cmsshoppingcart.models;
+package com.adrian.cmsshoppingcart.models;
+
+import com.adrian.cmsshoppingcart.models.data.Page;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-
-import com.vojislavk.cmsshoppingcart.models.data.Page;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PageRepository extends JpaRepository<Page, Integer> {
 

@@ -1,4 +1,4 @@
-package com.vojislavk.cmsshoppingcart.models;
+package com.adrian.cmsshoppingcart.models;
 
 import lombok.Data;
 

@@ -1,8 +1,7 @@
-package com.vojislavk.cmsshoppingcart.controllers;
+package com.adrian.cmsshoppingcart.controllers;
 
-import com.vojislavk.cmsshoppingcart.models.PageRepository;
-import com.vojislavk.cmsshoppingcart.models.data.Page;
-
+import com.adrian.cmsshoppingcart.models.PageRepository;
+import com.adrian.cmsshoppingcart.models.data.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +23,11 @@ public class PagesController {
         model.addAttribute("page", page);
         
         return "page";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
     @GetMapping("/{slug}")

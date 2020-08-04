@@ -63,6 +63,10 @@
     <form id="paypalform" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="upload" value="1">
+
+        <!-- sandbox email for paypal example, but if you want to
+        create your own sellers and buyers you need to have paypal sandbox account, but
+         before you need regular paypal account first -->
         <input type="hidden" name="business" value="jultranet-facilitator@gmail.com">
 
         <th:block th:each="el, iter : ${cart}">

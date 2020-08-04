@@ -1,20 +1,13 @@
-package com.vojislavk.cmsshoppingcart.models.data;
+package com.adrian.cmsshoppingcart.models.data;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import lombok.Data;
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products")
@@ -22,7 +15,7 @@ import lombok.Data;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @Size(min=2, message = "Name must be at least 2 characters long")
