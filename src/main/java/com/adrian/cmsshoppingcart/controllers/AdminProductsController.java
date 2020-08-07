@@ -33,6 +33,12 @@ public class AdminProductsController {
     @Autowired
     private CategoryRepository categoryRepo;
 
+
+    @GetMapping("/all")
+    public List<Product> getAll() {
+        return productRepo.findAll();
+    }
+
     @GetMapping
     public String index(Model model, @RequestParam(value="page", required = false) Integer p) {
 

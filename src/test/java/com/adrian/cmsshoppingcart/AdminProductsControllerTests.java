@@ -1,48 +1,30 @@
 package com.adrian.cmsshoppingcart;
 
 import com.adrian.cmsshoppingcart.controllers.AdminPagesController;
+import com.adrian.cmsshoppingcart.controllers.AdminProductsController;
 import com.adrian.cmsshoppingcart.models.data.Page;
 import com.adrian.cmsshoppingcart.models.data.Product;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class AdminProductsController {
-
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    AdminProductsController adminProductsController;
-
-
-    @Test
-    public void should_add_new_product() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/admin/products/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"id\": \"1\"," +
-                        "\"name\" : \"apple\"," +
-                        "\"slug\" : \"apple-slug\"," +
-                        "\"description\" : \"red apple\"" +
-                        "\"image\" : \"image\"" +
-                        "\"price\" : \"2\"" +
-                        "\"categoryId\" : \"1\"" +
-                        "\"createdAt\" : \"2020-02-02\"" +
-                        "\"updatedAt\" : \"2020-02-02\"" +
-                        "}"))
-                .andExpect(status().isCreated());
-    }
+public class AdminProductsControllerTests {
 
     @Test
     public void getAdminProducts() {
@@ -65,66 +47,59 @@ public class AdminProductsController {
         return poducts;
     }
 
+    @Test
+    public void addProduct() {
+        //given
+        AdminProductsController adminProductsController = mock(AdminProductsController.class);
+        given(adminProductsController.add(Mockito.any(Product.class), Mockito.any(Model.class))).willReturn(String.valueOf(new Product()));
+        //when
+
+        Model testModel = new Model() {
+            @Override
+            public Model addAttribute(String s, Object o) {
+                return null;
+            }
+
+            @Override
+            public Model addAttribute(Object o) {
+                return null;
+            }
+
+            @Override
+            public Model addAllAttributes(Collection<?> collection) {
+                return null;
+            }
+
+            @Override
+            public Model addAllAttributes(Map<String, ?> map) {
+                return null;
+            }
+
+            @Override
+            public Model mergeAttributes(Map<String, ?> map) {
+                return null;
+            }
+
+            @Override
+            public boolean containsAttribute(String s) {
+                return false;
+            }
+
+            @Override
+            public Object getAttribute(String s) {
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> asMap() {
+                return null;
+            }
+        };
+        String product = adminProductsController.add(new Product(), testModel);
+        //then
+        Assert.assertEquals(product, new String("Product(id=0, name=null, slug=null, description=null, image=null, price=null, categoryId=null, createdAt=null, updatedAt=null)"));
+    }
+
 
 }
 
-
-//@SpringBootTest
-//@AutoConfigureMockMvc
-//class CarControllerTest {
-//
-//    @Autowired
-//    MockMvc mockMvc;
-//
-//    @Autowired
-//    CarController carController;
-//
-//    @Test
-//    void hello() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/cars/hello"))
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.content().string("hello"));
-//    }
-//
-//    @Test
-//    void getCars() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/cars"))
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)));
-//    }
-//
-//    @Test
-//    void should_get_car_by_id() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/cars/{id}", 1))
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Is.is(1)));
-//    }
-//
-//    @Test
-//    void should_add_new_car() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.post("/cars")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content("{ \"id\": \"4\"," +
-//                        "\"mark\" : \"Fiat\"," +
-//                        "\"model\" : \"126p\"," +
-//                        "\"color\" : \"czerwony\"" +
-//                        "}"))
-//                .andExpect(status().isCreated());
-//    }
-//
-//    @Test
-//    void getFord() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/cars"))
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", Is.is("Ford")));
-//    }
-//
-//    @Test
-//    void should_get_cars_with_specified_color() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get("/cars/colors/{color}", "czarny"))
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)));
-//    }
-//
-//
-//}

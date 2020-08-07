@@ -24,6 +24,10 @@ public class AdminPagesController {
     //     this.pageRepo = pageRepo;
     // }
 
+    public List<Page> getAllPages() {
+        return pageRepo.findAll();
+    }
+
     @GetMapping
     public String index(Model model) {
 
