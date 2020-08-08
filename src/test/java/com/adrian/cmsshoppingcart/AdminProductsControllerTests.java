@@ -8,10 +8,6 @@ import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
@@ -21,20 +17,8 @@ import java.util.Map;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class AdminProductsControllerTests {
-
-    @Test
-    public void getAdminProducts() {
-        //given
-        AdminProductsController adminProductsController = mock(AdminProductsController.class);
-        //when
-        when(adminProductsController.getAll()).thenReturn(prepareMockData());
-        //then
-        Assert.assertThat(adminProductsController.getAll(), Matchers.hasSize(4));
-    }
 
     private List<Product> prepareMockData() {
         List<Product> poducts = new ArrayList<>();

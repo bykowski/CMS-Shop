@@ -34,10 +34,9 @@ public class AdminProductsController {
     private CategoryRepository categoryRepo;
 
 
-    @GetMapping("/all")
-    public List<Product> getAll() {
-        return productRepo.findAll();
-    }
+//    public List<Product> getAll() {
+//        return productRepo.findAll();
+//    }
 
     @GetMapping
     public String index(Model model, @RequestParam(value="page", required = false) Integer p) {

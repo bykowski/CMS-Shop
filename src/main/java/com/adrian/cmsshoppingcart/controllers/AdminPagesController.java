@@ -40,9 +40,6 @@ public class AdminPagesController {
 
     @GetMapping("/add")
     public String add(@ModelAttribute Page page) {
-        
-        // model.addAttribute("page", new Page());
-
         return "admin/pages/add";
     }
 
@@ -77,13 +74,9 @@ public class AdminPagesController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
-
         Page page = pageRepo.getOne(id);
-
         model.addAttribute("page", page);
-
         return "admin/pages/edit";
-        
     }
 
     @PostMapping("/edit")
@@ -119,7 +112,6 @@ public class AdminPagesController {
 
     @GetMapping("/delete/{id}")
     public String edit(@PathVariable int id, RedirectAttributes redirectAttributes) {
-
         pageRepo.deleteById(id);
 
         redirectAttributes.addFlashAttribute("message", "Page deleted");

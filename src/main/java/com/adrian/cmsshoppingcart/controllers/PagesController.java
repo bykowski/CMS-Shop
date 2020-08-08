@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/")
 public class PagesController {
@@ -18,10 +20,10 @@ public class PagesController {
 
     @GetMapping
     public String home(Model model) {
-        
+
         Page page = pageRepo.findBySlug("home");
         model.addAttribute("page", page);
-        
+
         return "page";
     }
 
@@ -32,16 +34,16 @@ public class PagesController {
 
     @GetMapping("/{slug}")
     public String page(@PathVariable String slug, Model model) {
-        
+
         Page page = pageRepo.findBySlug(slug);
 
         if (page == null) {
             return "redirect:/";
         }
-        
+
         model.addAttribute("page", page);
-        
+
         return "page";
     }
-    
+
 }
