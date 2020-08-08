@@ -12,6 +12,12 @@
             </li>
         </ul>
 
+        <form th:if="${principal == 'admin'}" method="get" th:action="@{/admin/pages}">
+            <span th:text="'   '"> </span>
+            <button class="btn btn-secondary">Admin settings</button>
+            <span class="text-white" th:text="${' &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp '}"></span>
+        </form>
+
         <ul class="float-right navbar-nav" th:if="${principal == null}">
             <li class="nav-item active">
                 <a th:href="@{/register}" class="nav-link">Register</a>
@@ -27,6 +33,7 @@
             <span th:text="'   '"> </span>
             <button class="btn btn-secondary">Logout</button>
         </form>
+
 
     </div>
 </nav>
@@ -51,6 +58,7 @@
             </li>
 
         </ul>
+
 
         <form class="float-right" th:if="${principal != null}" method="post" th:action="@{/logout}">
             <span class="text-white" th:text="${'Hi, ' + principal}"></span>
