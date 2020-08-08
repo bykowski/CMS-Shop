@@ -1,5 +1,6 @@
 package com.adrian.cmsshoppingcart.security;
 
+import com.adrian.cmsshoppingcart.security.aop.RegisterInfo;
 import com.adrian.cmsshoppingcart.models.UserRepository;
 import com.adrian.cmsshoppingcart.models.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class RegistrationController {
     }
 
     @PostMapping
+    @RegisterInfo
     public String register(@Valid User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
