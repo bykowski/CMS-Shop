@@ -1,6 +1,5 @@
 package com.adrian.cmsshoppingcart.models.data;
 
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +12,6 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "users")
-@Data
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1l;
@@ -37,6 +35,68 @@ public class User implements UserDetails {
     @Column(name = "phone_number")
     @Size(min=6, message = "Phone number must be at least 6 characters long")
     private String phoneNumber;
+
+    public User() {
+    }
+
+    public User(@Size(min = 2, message = "Username must be at least 2 characters long") String username,
+                @Size(min = 4, message = "Password must be at least 4 characters long") String password,
+                String confirmPassword, @Email(message = "Please enter a valid email") String email,
+                @Size(min = 6, message = "Phone number must be at least 6 characters long") String phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
