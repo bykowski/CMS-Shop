@@ -58,5 +58,5 @@ public class Cart {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
 }
